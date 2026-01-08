@@ -6,8 +6,10 @@ import { CustomButton, InputText } from '.'
 import { useForm } from 'react-hook-form'
 import { BsMoon, BsSunFill } from 'react-icons/bs'
 import { IoMdNotificationsOutline } from 'react-icons/io'
+import { FaComments } from 'react-icons/fa'
 import { SetTheme } from '../redux/themeSlice'
 import { UserLogout } from '../redux/userSlice'
+import { openChat } from '../redux/chatSlice'
 import { fetchPosts } from '../utils'
 
 
@@ -18,7 +20,7 @@ const NavBar = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const handleSearch = async (data) => {
-        await fetchPosts(user.token, dispatch, "",data);
+        await fetchPosts(user.token, dispatch, "", data);
 
     }
 
@@ -27,6 +29,10 @@ const NavBar = () => {
 
         dispatch(SetTheme(themeValue))
         // console.log("theme buttoj")
+    }
+
+    const handleOpenChat = () => {
+        dispatch(openChat());
     }
     return (
         <div className='navbar w-full flex itmes-center justify-between py-3 md:py-6 px-4 bg-primary'>
@@ -66,12 +72,19 @@ const NavBar = () => {
                 <div className='hidden lg:flex'>
                     <IoMdNotificationsOutline />
                 </div>
+                <button
+                    onClick={handleOpenChat}
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    aria-label="Ouvrir le chat"
+                >
+                    <FaComments />
+                </button>
                 <div>
                     <CustomButton
-                    onClick={()=>dispatch(UserLogout())}
-                    title = "Log Out"
-                    containerStyles = "text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
-                     />
+                        onClick={() => dispatch(UserLogout())}
+                        title="Log Out"
+                        containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
+                    />
                 </div>
             </div>
 
