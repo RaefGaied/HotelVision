@@ -44,7 +44,20 @@ export const register = async (req, res, next) => {
         await user.save();
 
         //send email verification to user
-        sendVerificationEmail(user, res);
+        const emailSent = await sendVerificationEmail(user);
+
+        if (!emailSent) {
+            res.status(201).json({
+                success: true,
+                message: "Compte créé mais l'email de vérification n'a pas pu être envoyé. Réessayez plus tard.",
+            });
+            return;
+        }
+
+        res.status(201).json({
+            success: true,
+            message: "Compte créé. Consultez votre email pour valider votre compte.",
+        });
     } catch (error) {
         console.log(error);
         res.status(404).json({ message: error.message });
