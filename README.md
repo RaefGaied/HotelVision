@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Connectify - Social Media App (MERN)
 
 Introducing the Connectify App— a meticulously crafted, full-stack MERN-based platform designed to seamlessly foster connections, passionately share cherished memories through photos, and facilitate profound interactions. This innovative application has been thoughtfully and purposefully designed to deliver users an effortlessly gratifying social networking experience
@@ -51,3 +52,13 @@ Le rapport (voir `rapport.md`) contient un diagramme ER détaillant ces entités
 - Run npm install to install the dependencies.
 - Set up environment variables for authentication and database connection.
 - Run the app using npm start.
+=======
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+>>>>>>> 746f039c0cbdff858d36bd5877338b6b87b3c3ad
