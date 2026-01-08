@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .card {
+            border-radius: 10px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .success {
+            color: green;
+
+        }
+
+        .error {
+            color: red;
+
+        }
+
+        .hideBtn {
+            display: none;
+        }
+
+        .showBtn {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: rgba(1, 116, 210, 0.971);
+            color: white;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="icon">
+            <span id="statusIcon" class=""></span>
+        </div>
+        <div id="statusMessage" class=""></div>
+        <a href="http://localhost:5173/login" id="btn" class="">Login</a>
+    </div>
+
+
+    <script>
+        // Get the message parameter from the URL
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+
+        const status = urlParams.get('status');
+
+        // Get the card, status icon, and sfcatus message elements
+
+        const card = document.querySelector('.card"');
+
+        const statusIcon = document.getElementById('statusIcon');
+
+        const statusMessage = document.getElementById('statusMessage');
+        const btn = document.getElementById("btn")
+
+        // Display appropriate content and set background color based on the message param
+        if (status === 'success') {
+            statusIcon.innerHTML = '/';
+            statusMessage.textContent = message;
+            card.classList.add('success');
+            statusIcon.classList.add('success');
+            statusMessage.classList.add('success');
+            btn.classList.add('showBtn');
+        } else if (status === 'error') {
+            statusIcon.innerHTML = 'X';
+            statusMessage.textContent = message;
+            card.classList.add('error');
+            statusIcon.classList.add('error');
+            statusMessage.classList.add('error');
+            btn.classList.add('hideBtn');
+        } else {
+            // Handle other cases
+            statusIcon.innerHTML = '?'; // Change to a question mark or other suitable icon
+            statusMessage.textContent = 'An unknown status occurred.';
+            card.classList.add('unknown');
+            statusIcon.classList.add('unknown');
+            statusMessage.classList.add('unknown');
+            btn.classList.add('hideBtn');
+        }
+    </script>
+</body>
+
+</html>
