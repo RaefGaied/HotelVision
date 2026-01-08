@@ -12,7 +12,7 @@ import { apiRequest } from '../utils'
 
 
 const Register = () => {
-  
+
 
   // Using the useForm hook to manage form-related functionality.
   // Configuring the form mode to "onChange," which means validation occurs as the user makes changes.
@@ -34,23 +34,23 @@ const Register = () => {
       const res = await apiRequest({
         url: "/auth/register",
         data: data,
-        method : "POST",
+        method: "POST",
       });
       console.log(res);
 
-      // if(res?.status === "failed"){
-      //   setErrMsg(res);
-      // }else{
-      //   setErrMsg(res);
-      //   setTimeout(()=>{
-      //     window.location.replace("/login");
-      //   }, 5000)
-      // }
+      if (res?.status === "failed") {
+        setErrMsg(res);
+      } else {
+        setErrMsg({ message: "Registration successful! Please check your email to verify your account.", status: "success" });
+        setTimeout(() => {
+          window.location.replace("/login");
+        }, 3000)
+      }
       setIsSubmitting(false);
     } catch (error) {
       console.log(error)
+      setErrMsg({ message: "Registration failed. Please try again.", status: "failed" });
       setIsSubmitting(false);
-      
     }
 
   }
@@ -124,7 +124,7 @@ const Register = () => {
               }
               styles="w-full "
               // labelStyle='ml-2'
-              error={errors.email ? errors.email.message : ""}
+              error={errors.password ? errors.password.message : ""}
             />
             <InputText
               name="confirmPassword"
@@ -154,8 +154,8 @@ const Register = () => {
             {
               // Check if 'errMsg' has a 'message' property and if it exists, render the following:
               errMsg?.message && (
-                // Render a <span> element with conditional classes based on 'err.Msg?.status'
-                <span className={`text-sm ${err.Msg?.status === "failed" ? "text-[#f64949fe]" : "text-[#2ba150fe]"} mt-0.5`}>
+                // Render a <span> element with conditional classes based on 'errMsg?.status'
+                <span className={`text-sm ${errMsg?.status === "failed" ? "text-[#f64949fe]" : "text-[#2ba150fe]"} mt-0.5`}>
                   {/* Display the 'errMsg' message */}
                   {errMsg?.message}
                 </span>
