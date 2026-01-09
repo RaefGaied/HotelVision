@@ -1,7 +1,7 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 if (!process.env.GEMINI_API_KEY) {
-    console.error("❌ Erreur : La clé API Gemini n'est pas définie dans les variables d'environnement");
+    console.error("Erreur : La clé API Gemini n'est pas définie dans les variables d'environnement");
     process.exit(1);
 }
 
@@ -36,19 +36,15 @@ function analyzeUserPreferences(pastReservations, currentPreferences) {
     };
 
     if (pastReservations && pastReservations.length > 0) {
-        // Analyze room types
         const types = pastReservations.map(r => r.chambre?.type).filter(Boolean);
         preferences.preferredTypes = [...new Set(types)];
 
-        // Calculate average budget
         const prices = pastReservations.map(r => r.chambre?.prix).filter(Boolean);
         preferences.avgBudget = prices.length > 0 ? Math.round(prices.reduce((a, b) => a + b, 0) / prices.length) : 0;
 
-        // Analyze services
         const allServices = pastReservations.flatMap(r => r.services || []);
         preferences.frequentServices = [...new Set(allServices)];
 
-        // Analyze hotels
         const hotels = pastReservations.map(r => r.chambre?.hotel?.nom).filter(Boolean);
         preferences.preferredHotels = [...new Set(hotels)];
     }
@@ -171,10 +167,8 @@ exports.getRecommendations = async (req, res) => {
         const response = await result.response;
         const text = response.text();
 
-        // Parse AI response
         let recommendations;
         try {
-            // Extract JSON from response
             const jsonMatch = text.match(/\{[\s\S]*\}/);
             if (jsonMatch) {
                 recommendations = JSON.parse(jsonMatch[0]);
@@ -182,7 +176,6 @@ exports.getRecommendations = async (req, res) => {
                 throw new Error("Format de réponse invalide");
             }
         } catch (error) {
-            // Fallback to basic recommendations if AI fails
             recommendations = generateFallbackRecommendations(availableRooms, userPreferences);
         }
 

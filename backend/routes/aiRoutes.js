@@ -6,13 +6,9 @@ const {
     chatbotAssistance
 } = require('../controllers/aiController');
 
-// Get personalized room recommendations
 router.post('/recommendations', getRecommendations);
-
-// Generate AI-powered room description
 router.get('/room-description/:roomId', generateRoomDescription);
 
-// Chatbot assistance
 router.post('/chatbot', chatbotAssistance);
 
 module.exports = router;
