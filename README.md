@@ -19,19 +19,21 @@
 
 # Table des matières
 
-- [Description](#-description)
+- [À propos du Projet](#-à-propos-du-projet)
 - [Architecture](#-architecture)
-- [Fonctionnalités](#-fonctionnalités)
-- [Technologies](#-technologies)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
+- [Fonctionnalités Avancées](#-fonctionnalités-avancées)
+- [Stack Technologique](#-stack-technologique)
+- [Installation Rapide](#-installation-rapide)
+- [Configuration des Variables d'Environnement](#-configuration-des-variables-denvironnement)
+- [Démarrage de l'Application](#-démarrage-de-lapplication)
+- [Workflow de Développement avec IA](#-workflow-de-développement-avec-ia)
 - [Utilisation](#-utilisation)
 - [Couche Business Intelligence](#-couche-business-intelligence)
 - [Structure du projet](#-structure-du-projet)
-- [API Endpoints](#-api-endpoints)
+- [API Documentation](#-api-documentation)
 - [Screenshots](#-screenshots)
 - [Contribuer](#-contribuer)
-- [Licence](#-licence)
+- [Auteur](#-auteur)
 
 ---
 
