@@ -216,16 +216,14 @@ exports.updateHotel = async (req, res) => {
   }
 };
 
-// Generate AI description for existing hotel
 exports.generateHotelDescription = async (req, res) => {
   try {
     const { hotelId } = req.params;
-    const hotelData = req.body; // Données du formulaire pour nouvel hôtel
+    const hotelData = req.body; 
 
     let hotel;
 
     if (hotelId) {
-      // Cas 1: Hôtel existant
       const Hotel = require('../models/Hotel');
       hotel = await Hotel.findById(hotelId);
 
@@ -233,7 +231,6 @@ exports.generateHotelDescription = async (req, res) => {
         return res.status(404).json({ msg: "Hôtel non trouvé" });
       }
     } else {
-      // Cas 2: Nouvel hôtel - utiliser les données du formulaire
       hotel = hotelData;
 
       if (!hotel || !hotel.nom || !hotel.ville || !hotel.etoiles) {
@@ -241,7 +238,6 @@ exports.generateHotelDescription = async (req, res) => {
       }
     }
 
-    // Générer une description IA
     try {
       const { GoogleGenerativeAI } = require("@google/generative-ai");
       const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -289,10 +285,8 @@ exports.generateHotelDescription = async (req, res) => {
       const text = response.text();
 
       try {
-        // Tenter de parser le JSON de plusieurs manières
         let aiDescription = null;
 
-        // Méthode 1: chercher un JSON complet
         const jsonMatch = text.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
           try {
@@ -302,7 +296,6 @@ exports.generateHotelDescription = async (req, res) => {
           }
         }
 
-        // Méthode 2: chercher le champ description spécifiquement
         if (!aiDescription) {
           const descMatch = text.match(/["']description["']\s*:\s*["']([^"']+)["']/);
           if (descMatch) {

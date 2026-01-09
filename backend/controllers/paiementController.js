@@ -7,7 +7,6 @@ exports.createPaiement = async (req, res) => {
   const { reservationId, montant, methodePaiement } = req.body;
 
   try {
-    // Validate inputs
     if (!reservationId || !montant || !methodePaiement) {
       return res.status(400).json({ 
         msg: 'Données manquantes: reservationId, montant, methodePaiement requis' 
@@ -20,7 +19,6 @@ exports.createPaiement = async (req, res) => {
       });
     }
 
-    // Validate payment method
     const validMethods = ['ESPECES', 'CARTE_CREDIT', 'VIREMENT', 'CHEQUE'];
     if (!validMethods.includes(methodePaiement)) {
       return res.status(400).json({ 
@@ -28,13 +26,11 @@ exports.createPaiement = async (req, res) => {
       });
     }
 
-    // Get reservation
     const reservation = await Reservation.findById(reservationId);
     if (!reservation) {
       return res.status(404).json({ msg: 'Réservation non trouvée' });
     }
 
-    // Check if payment already exists
     const paiementExistant = await Paiement.findOne({ reservation: reservationId });
     if (paiementExistant) {
       return res.status(400).json({ msg: 'Un paiement existe déjà pour cette réservation' });

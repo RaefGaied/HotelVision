@@ -2,12 +2,10 @@ const Facture = require('../models/Facture');
 const Paiement = require('../models/Paiement');
 const Reservation = require('../models/Reservation');
 
-// Generate invoice for reservation
 exports.genererFacture = async (req, res) => {
   const { reservationId } = req.body;
 
   try {
-    // Get reservation with room details
     const reservation = await Reservation.findById(reservationId)
       .populate('chambre')
       .populate('services');
@@ -16,18 +14,15 @@ exports.genererFacture = async (req, res) => {
       return res.status(404).json({ msg: 'Réservation non trouvée' });
     }
 
-    // Check if invoice already exists
     const factureExistante = await Facture.findOne({ reservation: reservationId });
     if (factureExistante) {
       return res.status(400).json({ msg: 'Une facture existe déjà pour cette réservation' });
     }
 
-    // Calculate number of nights
     const debut = new Date(reservation.datedebut);
     const fin = new Date(reservation.datefin);
     const nuits = Math.ceil((fin - debut) / (1000 * 60 * 60 * 24)) || 1;
 
-    // Calculate total amount: room price × nights + services cost
     let montantTotal = reservation.chambre.prix * nuits;
 
     if (reservation.services && reservation.services.length > 0) {
@@ -35,7 +30,6 @@ exports.genererFacture = async (req, res) => {
       montantTotal += servicesCost * nuits; // Services cost × nights
     }
 
-    // Create invoice
     const nouvelleFacture = new Facture({
       reservation: reservationId,
       montantTotal,
@@ -62,7 +56,6 @@ exports.genererFacture = async (req, res) => {
   }
 };
 
-// Get invoice by reservation
 exports.getFactureByReservation = async (req, res) => {
   try {
     const facture = await Facture.findOne({ reservation: req.params.resId })
@@ -86,10 +79,8 @@ exports.getFactureByReservation = async (req, res) => {
   }
 };
 
-// Get my invoices (Client)
 exports.getMesFactures = async (req, res) => {
   try {
-    // Find all reservations for the client first
     const mesReservations = await Reservation.find({ client: req.user.id })
       .populate([
         { path: 'client', select: 'nom email' },
@@ -97,13 +88,11 @@ exports.getMesFactures = async (req, res) => {
         { path: 'services' }
       ]);
 
-    // Get all factures for these reservations
     const reservationIds = mesReservations.map(r => r._id);
     const factures = await Facture.find({ reservation: { $in: reservationIds } })
       .populate('paiement')
       .sort({ dateEmission: -1 });
 
-    // Merge factures with their reservations
     const facturesAvecReservations = factures.map(facture => {
       const reservation = mesReservations.find(r => r._id.toString() === facture.reservation.toString());
       return {
@@ -118,7 +107,6 @@ exports.getMesFactures = async (req, res) => {
   }
 };
 
-// Get all invoices (Admin)
 exports.getAllFactures = async (req, res) => {
   try {
     const { statut } = req.query;
@@ -144,7 +132,6 @@ exports.getAllFactures = async (req, res) => {
   }
 };
 
-// Update invoice status
 exports.updateFacture = async (req, res) => {
   const { statut } = req.body;
 

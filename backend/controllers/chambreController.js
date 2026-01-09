@@ -38,12 +38,10 @@ exports.getChambresByHotel = async (req, res) => {
   }
 };
 
-// Create a new room (Admin only)
 exports.createChambre = async (req, res) => {
   const { hotel, numero, type, capacite, prix, vue } = req.body;
 
   try {
-    // Verify hotel exists
     const hotelExiste = await Hotel.findById(hotel);
     if (!hotelExiste) {
       return res.status(404).json({ msg: 'Hôtel non trouvé' });

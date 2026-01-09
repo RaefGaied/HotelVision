@@ -11,7 +11,6 @@ const apiClient = axios.create({
   },
 });
 
-// Fonction pour vérifier l'expiration du token (JWT)
 const isTokenExpired = (token) => {
   try {
     const payload = JSON.parse(atob(token.split('.')[1]));
@@ -50,9 +49,7 @@ apiClient.interceptors.response.use(
   (error) => {
     const status = error.response?.status;
     
-    // Gestion des erreurs d'authentification
     if (status === 401) {
-      // Non authentifié ou token invalide
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       store.dispatch(logout());

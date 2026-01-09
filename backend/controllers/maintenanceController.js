@@ -11,15 +11,12 @@ exports.repairFactures = async (req, res) => {
     let fixed = 0;
     
     for (const facture of allFactures) {
-      // Check if reservation exists
       const reservation = await Reservation.findById(facture.reservation);
       
       if (!reservation) {
-        // If reservation doesn't exist, delete the facture
         await Facture.findByIdAndDelete(facture._id);
         orphaned++;
       } else if (!reservation.datedebut || !reservation.datefin) {
-        // If dates are missing, try to get them from the reservation
         console.warn(`Facture ${facture._id} has reservation without dates`);
       } else {
         fixed++;

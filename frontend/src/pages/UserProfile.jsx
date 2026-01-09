@@ -82,7 +82,6 @@ const UserProfile = () => {
           <p className="text-gray-600">Gérez vos informations personnelles et vos préférences</p>
         </div>
 
-        {/* Profile Avatar & Info Summary */}
         <div className="bg-linear-to-br from-blue-50 to-blue-100 rounded-lg p-8 mb-8 border border-blue-200">
           <div className="flex items-center gap-6">
             <div className="bg-blue-600 text-white rounded-full w-20 h-20 flex items-center justify-center">
@@ -102,7 +101,6 @@ const UserProfile = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Informations Personnelles */}
             <div className="bg-white border border-gray-200 rounded-lg p-6">

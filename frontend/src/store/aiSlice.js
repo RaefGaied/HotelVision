@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import apiClient from '../services/apiClient'
 
-// Async thunks for AI features
 export const getRecommendations = createAsyncThunk(
     'ai/getRecommendations',
     async ({ userId, preferences }, { rejectWithValue }) => {
@@ -79,7 +78,6 @@ const aiSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        // Get recommendations
         builder
             .addCase(getRecommendations.pending, (state) => {
                 state.loading.recommendations = true
@@ -95,7 +93,6 @@ const aiSlice = createSlice({
                 state.error.recommendations = typeof action.payload === 'string' ? action.payload : action.payload?.msg || 'Erreur lors de la génération des recommandations'
             })
 
-        // Generate room description
         builder
             .addCase(generateRoomDescription.pending, (state) => {
                 state.loading.description = true
@@ -110,7 +107,6 @@ const aiSlice = createSlice({
                 state.error.description = typeof action.payload === 'string' ? action.payload : action.payload?.msg || 'Erreur lors de la génération de la description'
             })
 
-        // Chatbot assistance
         builder
             .addCase(chatbotAssistance.pending, (state) => {
                 state.loading.chatbot = true

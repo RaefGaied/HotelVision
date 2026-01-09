@@ -1,7 +1,6 @@
 const Service = require('../models/Service');
 const Hotel = require('../models/Hotel');
 
-// Get services by hotel
 exports.getServices = async (req, res) => {
   try {
     const { hotel, actif } = req.query;
@@ -19,7 +18,6 @@ exports.getServices = async (req, res) => {
   }
 };
 
-// Get services by hotel ID
 exports.getServicesByHotel = async (req, res) => {
   try {
     const { hotelId } = req.params;
@@ -37,7 +35,6 @@ exports.getServicesByHotel = async (req, res) => {
   }
 };
 
-// Create service (Admin only)
 exports.createService = async (req, res) => {
   const { hotel, nom, description, prix } = req.body;
 

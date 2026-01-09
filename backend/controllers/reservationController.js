@@ -4,12 +4,10 @@ const Service = require('../models/Service');
 const Facture = require('../models/Facture');
 const Paiement = require('../models/Paiement');
 
-// Create a reservation (Client)
 exports.createReservation = async (req, res) => {
   const { chambre, datedebut, datefin, dateArrivee, dateDepart, nombrePersonnes, services } = req.body;
 
   try {
-    // Support both date formats (datedebut/datefin and dateArrivee/dateDepart)
     const dateDebut = datedebut || dateArrivee;
     const dateFin = datefin || dateDepart;
 
@@ -17,7 +15,6 @@ exports.createReservation = async (req, res) => {
       return res.status(400).json({ msg: 'Dates de début et fin requises' });
     }
 
-    // Verify room exists and is available
     const chambreTrouvee = await Chambre.findById(chambre).populate('hotel');
     
     if (!chambreTrouvee) {
@@ -38,22 +35,18 @@ exports.createReservation = async (req, res) => {
 
     await nouvelleReservation.save();
     
-    // Update room status to occupied
     chambreTrouvee.statut = 'OCCUPEE';
     await chambreTrouvee.save();
 
-    // Populate reservation details
     const reservationPopulee = await nouvelleReservation.populate([
       { path: 'client', select: 'nom email' },
       { path: 'chambre', populate: { path: 'hotel' } },
       { path: 'services' }
     ]);
 
-    // Calculer le montant total (selon diagramme UML)
     const days = Math.ceil((new Date(dateFin) - new Date(dateDebut)) / (1000 * 60 * 60 * 24));
     const prixChambre = chambreTrouvee.prix * days;
     
-    // Calculer le coût des services
     let prixServices = 0;
     if (services && services.length > 0) {
       const servicesDetails = await Service.find({ _id: { $in: services } });
@@ -62,11 +55,9 @@ exports.createReservation = async (req, res) => {
     
     const montantTotal = prixChambre + prixServices;
 
-    // Mettre à jour la réservation avec le montant total
     nouvelleReservation.montantTotal = montantTotal;
     await nouvelleReservation.save();
 
-    // Générer automatiquement la facture (relation 1-1 selon UML)
     const facture = new Facture({
       reservation: nouvelleReservation._id,
       montantTotal: montantTotal,
@@ -86,7 +77,6 @@ exports.createReservation = async (req, res) => {
   }
 };
 
-// Get my reservations (Client)
 exports.getMesReservations = async (req, res) => {
   try {
     const reservations = await Reservation.find({ client: req.user.id })
@@ -97,7 +87,6 @@ exports.getMesReservations = async (req, res) => {
       ])
       .sort({ createdAt: -1 });
 
-    // Ajouter les factures pour chaque réservation
     const reservationsAvecFactures = await Promise.all(
       reservations.map(async (res) => {
         const facture = await Facture.findOne({ reservation: res._id });
@@ -114,7 +103,6 @@ exports.getMesReservations = async (req, res) => {
   }
 };
 
-// Get all reservations (Admin)
 exports.getAllReservations = async (req, res) => {
   try {
     const { statut, hotel } = req.query;
@@ -133,7 +121,6 @@ exports.getAllReservations = async (req, res) => {
       ])
       .sort({ createdAt: -1 });
 
-    // Ajouter les factures pour chaque réservation
     const reservationsAvecFactures = await Promise.all(
       reservations.map(async (res) => {
         const facture = await Facture.findOne({ reservation: res._id });
@@ -150,7 +137,6 @@ exports.getAllReservations = async (req, res) => {
   }
 };
 
-// Get reservation by ID
 exports.getReservationById = async (req, res) => {
   try {
     const reservation = await Reservation.findById(req.params.id)

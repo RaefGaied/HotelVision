@@ -20,7 +20,6 @@ const connectDB = async () => {
 
 const clearDatabase = async () => {
   try {
-    // Drop entire collections to remove all documents and indexes
     const collections = ['factures', 'paiements', 'reservations', 'services', 'chambres', 'hotels', 'users'];
     
     for (const collName of collections) {
@@ -40,7 +39,6 @@ const clearDatabase = async () => {
   }
 };
 
-// Données réalistes pour BI
 const prenoms = [
   "Marie",
   "Pierre",

@@ -738,7 +738,7 @@ DELETE /api/hotels/:id             # Supprimer un hôtel (Admin)
 POST   /api/hotels/:id/generate-description  # Générer description IA (Admin)
 ```
 
-### 🛏️ Chambres
+### Chambres
 
 ```http
 GET    /api/rooms                  # Liste des chambres

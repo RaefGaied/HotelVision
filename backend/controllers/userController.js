@@ -9,22 +9,18 @@ exports.register = async (req, res) => {
   console.log('📝 Données reçues pour register:', { nom, email, password: password ? '***' : undefined, role });
   
   try {
-    // Check if user exists
     let user = await User.findOne({ email });
     if (user) {
-      console.log('❌ Utilisateur déjà existant:', email);
+      console.log('Utilisateur déjà existant:', email);
       return res.status(400).json({ msg: 'Utilisateur déjà existant' });
     }
 
-    // Validate role
     const validRoles = ['client', 'admin'];
     const userRole = validRoles.includes(role) ? role : 'client';
 
-    // Create new user
     user = new User({ nom, email, password, role: userRole });
     await user.save();
 
-    // Create JWT token
     const payload = { user: { id: user.id, role: user.role } };
 
     jwt.sign(

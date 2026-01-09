@@ -20,9 +20,7 @@ const HotelDetailsPage = () => {
     const loadHotelData = async () => {
       setLoading(true)
       try {
-        // Fetch hotel details
         await dispatch(fetchHotelById(id))
-        // Fetch chambres for this hotel
         await dispatch(fetchChambresByHotel(id))
       } catch (error) {
         console.error('Erreur lors du chargement:', error)
