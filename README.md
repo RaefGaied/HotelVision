@@ -19,21 +19,21 @@
 
 # Table des matières
 
-- [À propos du Projet](#-à-propos-du-projet)
+- [À propos du Projet](#à-propos-du-projet)
 - [Architecture](#-architecture)
 - [Fonctionnalités Avancées](#-fonctionnalités-avancées)
 - [Stack Technologique](#-stack-technologique)
 - [Installation Rapide](#-installation-rapide)
-- [Configuration des Variables d'Environnement](#-configuration-des-variables-denvironnement)
-- [Démarrage de l'Application](#-démarrage-de-lapplication)
-- [Workflow de Développement avec IA](#-workflow-de-développement-avec-ia)
+- [Configuration des Variables d'Environnement](#configuration-des-variables-denvironnement)
+- [Démarrage de l'Application](#démarrage-de-lapplication)
+- [Workflow de Développement avec IA](#workflow-de-développement-avec-ia)
 - [Utilisation](#-utilisation)
-- [Couche Business Intelligence](#-couche-business-intelligence)
-- [Structure du projet](#-structure-du-projet)
-- [API Documentation](#-api-documentation)
-- [Screenshots](#-screenshots)
-- [Contribuer](#-contribuer)
-- [Auteur](#-auteur)
+- [Couche Business Intelligence](#couche-business-intelligence)
+- [Structure du projet](#structure-du-projet)
+- [API Documentation](#api-documentation)
+- [Screenshots](#screenshots)
+- [Contribuer](#contribuer)
+- [Auteur](#auteur)
 
 ---
 
@@ -61,7 +61,7 @@ Développé dans le cadre du module **Data Analytics & Business Intelligence** (
 
 ---
 
-##  Architecture
+## Architecture
 
 ### Architecture Globale
 
@@ -148,7 +148,7 @@ MongoDB (Source) → ETL Python → PostgreSQL DW → Power BI → React Fronten
 - Journal d'activité complet
 - Sauvegardes automatisées
 
-###  Couche Business Intelligence
+### Couche Business Intelligence
 - ✅ **ETL complet** : Extraction MongoDB → Transformation Python → Chargement PostgreSQL
 - ✅ **Data Warehouse** : Modèle en étoile (5 dimensions + 1 table de faits)
 - ✅ **Dashboard Power BI** : 3 pages interactives avec storytelling
@@ -288,7 +288,7 @@ Le système intègre **Google Gemini API** pour offrir des fonctionnalités inte
    - Générer une clé API
    - Ajouter la clé dans `.env` du backend
 
-###  Configuration des Variables d'Environnement
+### Configuration des Variables d'Environnement
 
 **Backend (`.env`)**
 ```env
@@ -323,7 +323,7 @@ docker-compose up -d
 
 ---
 
-##  Démarrage de l'Application
+## Démarrage de l'Application
 
 ### 1. Lancer le Serveur Backend
 
@@ -525,7 +525,7 @@ npm run pre-commit
 
 ---
 
-##  Utilisation
+## Utilisation
 
 ### Démarrage rapide
 
