@@ -1,50 +1,59 @@
-import express from "express";
-import path from "path";
-import { userAuth } from "../middleware/authMiddleware.js";
-import { validate } from "../middleware/validationMiddleware.js";
-import { userUpdateValidator } from "../validators/contentValidators.js";
-
-// Controllers
-import { createUser, listUsers, deleteUser } from "../controllers/userAdminController.js";
-import { getUser, updateUser, profileViews, suggestedFriends } from "../controllers/profileController.js";
-import { sendFriendRequest, getFriendRequests, respondToRequest } from "../controllers/friendRequestController.js";
-import { register, login, verifyEmail, requestPasswordReset, resetPassword, changePassword } from "../controllers/authController.js";
-
+const express = require('express');
 const router = express.Router();
-const __dirname = path.resolve(path.dirname(""));
+const { 
+  register, 
+  login, 
+  getProfile, 
+  updateProfile, 
+  changePassword, 
+  getAllUsers,
+  getAllClients,
+  toggleClientActivation,
+  deleteAccount 
+} = require('../controllers/userController');
+const { check, validationResult } = require('express-validator');
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
+
+// Middleware for validation
+const validateRegister = [
+  check('nom', 'Le nom est obligatoire').not().isEmpty(),
+  check('email', 'Email non valide').isEmail(),
+  check('password', '6 caractères minimum').isLength({ min: 6 })
+];
+
+const validateLogin = [
+  check('email', 'Email non valide').isEmail(),
+  check('password', 'Mot de passe requis').exists()
+];
+
+const handleValidationErrors = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log('❌ Erreurs de validation:', errors.array());
+    console.log('📦 Body reçu:', req.body);
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+};
+
+// Public routes
+router.post('/test-register', (req, res) => {
+  console.log('🧪 TEST REGISTER - Body reçu:', req.body);
+  res.json({ success: true, received: req.body });
+});
+router.post('/register', validateRegister, handleValidationErrors, register);
+router.post('/login', validateLogin, handleValidationErrors, login);
+
+// Protected routes (Authenticated users)
+router.get('/profile', auth, getProfile);
+router.put('/profile', auth, updateProfile);
+router.put('/change-password', auth, changePassword);
+router.delete('/account', auth, deleteAccount);
 
 // Admin routes
-router.get("/", userAuth, listUsers);
-router.post("/", userAuth, userUpdateValidator, validate, createUser);
-router.delete("/:id", userAuth, deleteUser);
+router.get('/admin/users', [auth, admin], getAllUsers);
+router.get('/admin/clients', [auth, admin], getAllClients);
+router.put('/admin/clients/:clientId/toggle', [auth, admin], toggleClientActivation);
 
-// Profile routes
-router.post("/get-user/:id?", userAuth, getUser);
-router.put("/update-user", userAuth, userUpdateValidator, validate, updateUser);
-
-// Friend request routes
-router.post('/friend-request', userAuth, sendFriendRequest);
-router.post('/get-friend-request', userAuth, getFriendRequests);
-router.post("/accept-request", userAuth, respondToRequest);
-
-// Profile interactions
-router.post("/profile-view", userAuth, profileViews);
-router.post("/suggested-friends", userAuth, suggestedFriends);
-
-// Auth routes
-router.post("/register", register);
-router.post("/login", login);
-router.get("/verify/:userId/:token", verifyEmail);
-router.get("/reset-password/:userId/:token", resetPassword);
-router.post("/request-passwordreset", requestPasswordReset);
-router.post("/reset-password", changePassword);
-
-// Static pages
-router.get("/verified", (req, res) => {
-    res.sendFile(path.join(__dirname, "./views/verifiedpage.html"));
-});
-router.get("/resetpassword", (req, res) => {
-    res.sendFile(path.join(__dirname, "./views/verifiedpage.html"));
-});
-
-export default router;
+module.exports = router;

@@ -1,462 +1,218 @@
-import Verification from "../models/emailVerification.js";
-import Users from "../models/userModel.js";
-import Profiles from "../models/profileModel.js";
-import { compareString, createJWT, hashString } from "../utils/index.js";
-import PasswordReset from "../models/PasswordReset.js";
-import { resetPasswordLink } from "../utils/sendEmail.js";
-import FriendRequest from "../models/friendRequest.js";
+const User = require('../models/User');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-export const verifyEmail = async (req, res) => {
-    const { userId, token } = req.params;
-
-    try {
-        const verificationRecord = await Verification.findOne({ userId });
-
-        if (!verificationRecord) {
-            const message = "Invalid verification link. Try again later.";
-            return res.redirect(`http://localhost:5173/?status=error&message=${message}`);
-        }
-
-        const { expiresAt, token: hashedToken } = verificationRecord;
-
-        if (expiresAt < Date.now()) {
-            await Verification.findOneAndDelete({ userId });
-            await Users.findOneAndDelete({ _id: userId });
-            const message = "Verification token has expired.";
-            return res.redirect(`http://localhost:5173/?status=error&message=${message}`);
-        }
-
-        const isMatch = await compareString(token, hashedToken);
-        if (!isMatch) {
-            const message = "Verification failed or link is invalid";
-            return res.redirect(`http://localhost:5173/?status=error&message=${message}`);
-        }
-
-        await Users.findOneAndUpdate({ _id: userId }, { verified: true });
-        await Verification.findOneAndDelete({ userId });
-
-        const message = "Email verified successfully";
-        return res.redirect(`http://localhost:5173/?status=success&message=${message}`);
-    } catch (error) {
-        console.log(error);
-        return res.redirect(`http://localhost:5173/?status=error&message=Error`);
+// Register
+exports.register = async (req, res) => {
+  const { nom, email, password, role } = req.body;
+  
+  console.log('📝 Données reçues pour register:', { nom, email, password: password ? '***' : undefined, role });
+  
+  try {
+    // Check if user exists
+    let user = await User.findOne({ email });
+    if (user) {
+      console.log('❌ Utilisateur déjà existant:', email);
+      return res.status(400).json({ msg: 'Utilisateur déjà existant' });
     }
+
+    // Validate role
+    const validRoles = ['client', 'admin'];
+    const userRole = validRoles.includes(role) ? role : 'client';
+
+    // Create new user
+    user = new User({ nom, email, password, role: userRole });
+    await user.save();
+
+    // Create JWT token
+    const payload = { user: { id: user.id, role: user.role } };
+
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET, 
+      { expiresIn: '7d' },
+      (err, token) => {
+        if (err) throw err;
+        res.status(201).json({ 
+          message: "Inscription réussie",
+          token,
+          user: { 
+            id: user._id, 
+            nom: user.nom,
+            email: user.email, 
+            role: user.role 
+          }
+        });
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Erreur inscription", error: err.message });
+  }
 };
 
-export const requestPasswordReset = async (req, res) => {
-    try {
-        const { email } = req.body;
+// Login
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ msg: 'Identifiants invalides' });
 
-        const user = await Users.findOne({ email });
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ msg: 'Identifiants invalides' });
 
-        if (!user) {
-            return res.status(404).json({
-                status: "FAILED",
-                message: "Email address not found.",
-            });
-        }
+    const payload = { user: { id: user.id, role: user.role } };
 
-        const existingRequest = await PasswordReset.findOne({ email });
-        if (existingRequest) {
-            if (existingRequest.expiresAt > Date.now()) {
-                return res.status(201).json({
-                    status: "PENDING",
-                    message: "Reset password link has already been sent to your email",
-                });
-            }
-            await PasswordReset.findOneAndDelete({ email });
-        }
-
-        await resetPasswordLink(user, res);
-    } catch (error) {
-        console.log(error);
-        res.status(404).json({ message: error.message });
-    }
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: '7d' },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ 
+          message: "Connexion réussie",
+          token,
+          user: { 
+            id: user._id, 
+            nom: user.nom,
+            email: user.email, 
+            role: user.role 
+          }
+        });
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Erreur connexion", error: err.message });
+  }
 };
 
-export const resetPassword = async (req, res) => {
-    const { userId, token } = req.params;
-
-    try {
-        const user = await Users.findById(userId);
-
-        if (!user) {
-            const message = "Invalid password reset link. Try again";
-            return res.redirect(`/users/resetpassword?status=error&message=${message}`);
-        }
-
-        const resetPasswordRecord = await PasswordReset.findOne({ userId });
-        if (!resetPasswordRecord) {
-            const message = "Invalid password reset link. Try again";
-            return res.redirect(`/users/resetpassword?status=error&message=${message}`);
-        }
-
-        const { expiresAt, token: resetToken } = resetPasswordRecord;
-
-        if (expiresAt < Date.now()) {
-            const message = "Reset Password link has expired. Please try again";
-            return res.redirect(`/users/resetpassword?status=error&message=${message}`);
-        }
-
-        const isMatch = await compareString(token, resetToken);
-        if (!isMatch) {
-            const message = "Invalid reset password link. Please try again";
-            return res.redirect(`/users/resetpassword?status=error&message=${message}`);
-        }
-
-        return res.redirect(`/users/resetpassword?type=reset&id=${userId}`);
-    } catch (error) {
-        console.log(error);
-        res.status(404).json({ message: error.message });
+// Get profile
+exports.getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    
+    if (!user) {
+      return res.status(404).json({ msg: 'Utilisateur non trouvé' });
     }
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Erreur récupération profil", error: err.message });
+  }
 };
 
-export const changePassword = async (req, res) => {
-    try {
-        const { userId, password } = req.body;
+// Update profile
+exports.updateProfile = async (req, res) => {
+  const { nom, email } = req.body;
 
-        const hashedPassword = await hashString(password);
-
-        const user = await Users.findByIdAndUpdate(userId, { password: hashedPassword });
-
-        if (user) {
-            await PasswordReset.findOneAndDelete({ userId });
-
-            const message = "Password successfully reset.";
-            res.redirect(`/users/resetpassword?status=success&message=${message}`);
-            return;
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(404).json({ message: error.message });
+  try {
+    // Check if email is already taken by another user
+    if (email) {
+      const emailTaken = await User.findOne({ email, _id: { $ne: req.user.id } });
+      if (emailTaken) {
+        return res.status(400).json({ msg: 'Email déjà utilisé' });
+      }
     }
+
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $set: { nom, email } },
+      { new: true }
+    ).select('-password');
+
+    res.json({
+      message: "Profil mis à jour",
+      user
+    });
+  } catch (err) {
+    res.status(400).json({ message: "Erreur mise à jour profil", error: err.message });
+  }
 };
 
-export const createUser = async (req, res, next) => {
-    try {
-        const { firstName, lastName, email, password, profession, location } = req.body;
+// Change password
+exports.changePassword = async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
 
-        if (!(firstName && lastName && email && password)) {
-            next("All fields are required to create a user.");
-            return;
-        }
+  try {
+    const user = await User.findById(req.user.id);
 
-        const userExist = await Users.findOne({ email });
-        if (userExist) {
-            next("Email address already exists");
-            return;
-        }
-
-        const hashedPassword = await hashString(password);
-
-        const user = await Users.create({
-            firstName,
-            lastName,
-            email,
-            password: hashedPassword,
-            profession,
-            location,
-        });
-
-        const profile = await Profiles.create({
-            user: user._id,
-            displayName: `${firstName} ${lastName}`.trim(),
-        });
-
-        user.profile = profile._id;
-        await user.save();
-
-        user.password = undefined;
-
-        res.status(201).json({
-            success: true,
-            message: "User created successfully",
-            data: user,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: error.message });
+    // Verify old password
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ msg: 'Ancien mot de passe incorrect' });
     }
+
+    // Hash new password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+    await user.save();
+
+    res.json({ message: "Mot de passe changé avec succès" });
+  } catch (err) {
+    res.status(500).json({ message: "Erreur changement mot de passe", error: err.message });
+  }
 };
 
-export const listUsers = async (req, res) => {
-    try {
-        const { search } = req.query;
-        const query = search
-            ? {
-                $or: [
-                    { firstName: { $regex: search, $options: "i" } },
-                    { lastName: { $regex: search, $options: "i" } },
-                    { email: { $regex: search, $options: "i" } },
-                ],
-            }
-            : {};
-
-        const users = await Users.find(query)
-            .select("-password")
-            .populate({ path: "profile" })
-            .populate({ path: "friends", select: "firstName lastName profileUrl" });
-
-        res.status(200).json({
-            success: true,
-            data: users,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: error.message });
-    }
+// Get all users (Admin only)
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password');
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ message: "Erreur récupération utilisateurs", error: err.message });
+  }
 };
 
-export const deleteUser = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        const user = await Users.findById(id);
-
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                message: "User not found",
-            });
-        }
-
-        await Profiles.findOneAndDelete({ user: id });
-        await FriendRequest.deleteMany({
-            $or: [{ requestFrom: id }, { requestTo: id }],
-        });
-        await Users.findByIdAndDelete(id);
-
-        res.status(200).json({
-            success: true,
-            message: "User deleted successfully",
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            success: false,
-            message: error.message,
-        });
-    }
+// Get all clients (Admin only)
+exports.getAllClients = async (req, res) => {
+  try {
+    const clients = await User.find({ role: 'client' }).select('-password');
+    res.json(clients);
+  } catch (err) {
+    res.status(500).json({ message: "Erreur récupération clients", error: err.message });
+  }
 };
 
-export const getUser = async (req, res) => {
-    try {
-        const { userId } = req.body.user;
-        const { id } = req.params;
+// Toggle client activation (Admin only)
+exports.toggleClientActivation = async (req, res) => {
+  const { clientId } = req.params;
 
-        const user = await Users.findById(id ?? userId).populate({
-            path: "friends",
-            select: "-password",
-        });
-
-        if (!user) {
-            return res.status(404).json({
-                message: "User Not Found",
-                success: false,
-            });
-        }
-
-        user.password = undefined;
-
-        res.status(200).json({
-            user,
-            success: true,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: error.message });
+  try {
+    const client = await User.findById(clientId);
+    
+    if (!client) {
+      return res.status(404).json({ msg: 'Client non trouvé' });
     }
+
+    if (client.role !== 'client') {
+      return res.status(400).json({ msg: 'Cet utilisateur n\'est pas un client' });
+    }
+
+    client.actif = !client.actif;
+    await client.save();
+
+    res.json({
+      message: `Client ${client.actif ? 'activé' : 'désactivé'} avec succès`,
+      client: client.toObject({ getters: true, virtuals: true })
+    });
+  } catch (err) {
+    res.status(500).json({ message: "Erreur activation/désactivation client", error: err.message });
+  }
 };
 
-export const updateUser = async (req, res, next) => {
-    try {
-        const { firstName, lastName, location, profileUrl, profession } = req.body;
+// Delete user account
+exports.deleteAccount = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.user.id);
 
-        if (!(firstName || lastName || location || profileUrl || profession)) {
-            next("Please provide at least one field to update");
-            return;
-        }
-
-        const { userId } = req.body.user;
-
-        const updateUser = {
-            firstName,
-            lastName,
-            location,
-            profileUrl,
-            profession,
-            _id: userId,
-        };
-
-        const user = await Users.findByIdAndUpdate(userId, updateUser, {
-            new: true,
-        });
-
-        await user.populate({ path: "friends", select: "-password" });
-        const token = createJWT(user?._id);
-
-        user.password = undefined;
-
-        res.status(200).json({
-            success: true,
-            message: "User updated successfully",
-            user,
-            token,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(404).json({ message: error.message });
+    if (!user) {
+      return res.status(404).json({ msg: 'Utilisateur non trouvé' });
     }
-};
 
-export const friendRequest = async (req, res, next) => {
-    try {
-        const { userId } = req.body.user;
-        const { requestTo } = req.body;
-
-        const requestExist = await FriendRequest.findOne({
-            requestFrom: userId,
-            requestTo,
-        });
-
-        if (requestExist) {
-            next("Friend Request already sent.");
-            return;
-        }
-
-        const accountExist = await FriendRequest.findOne({
-            requestFrom: requestTo,
-            requestTo: userId,
-        });
-
-        if (accountExist) {
-            next("Friend Request already sent.");
-            return;
-        }
-
-        await FriendRequest.create({
-            requestTo,
-            requestFrom: userId,
-        });
-
-        res.status(201).json({
-            success: true,
-            message: "Friend Request sent successfully",
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: error.message });
-    }
-};
-
-export const getFriendRequest = async (req, res) => {
-    try {
-        const { userId } = req.body.user;
-
-        const request = await FriendRequest.find({
-            requestTo: userId,
-            requestStatus: "Pending",
-        })
-            .populate({
-                path: "requestFrom",
-                select: "firstName lastName profileUrl profession -password",
-            })
-            .limit(10)
-            .sort({
-                _id: -1,
-            });
-        res.status(200).json({
-            success: true,
-            data: request,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: error.message });
-    }
-};
-
-export const acceptRequest = async (req, res, next) => {
-    try {
-        const id = req.body.user.userId;
-        const { rid, status } = req.body;
-        const requestExist = await FriendRequest.findById(rid);
-
-        if (!requestExist) {
-            next("No Friend Request Found.");
-            return;
-        }
-
-        const updatedRequest = await FriendRequest.findByIdAndUpdate(
-            rid,
-            { requestStatus: status },
-            { new: true }
-        );
-
-        if (status === "Accepted") {
-            const user = await Users.findById(id);
-            user.friends.push(updatedRequest?.requestFrom);
-            await user.save();
-
-            const friend = await Users.findById(updatedRequest?.requestFrom);
-            friend.friends.push(updatedRequest?.requestTo);
-            await friend.save();
-        }
-
-        res.status(201).json({
-            message: `Friend Request ${status}`,
-            success: true,
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: "auth error",
-            success: false,
-        });
-    }
-};
-
-export const profileViews = async (req, res) => {
-    try {
-        const { userId } = req.body.user;
-        const { id } = req.body;
-
-        const user = await Users.findById(id);
-        user.views.push(userId);
-        await user.save();
-
-        res.status(201).json({
-            success: true,
-            message: "Successfully",
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            success: false,
-            message: "auth error",
-            error: error.message,
-        });
-    }
-};
-
-export const suggestedFriends = async (req, res) => {
-    try {
-        const { userId } = req.body.user;
-        const queryObject = {
-            _id: { $ne: userId },
-            friends: { $nin: userId },
-        };
-        const suggestedFriends = await Users.find(queryObject)
-            .limit(15)
-            .select("firstName lastName profileUrl profession -password");
-
-        res.status(200).json({
-            success: true,
-            data: suggestedFriends,
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(404).json({
-            message: error.message,
-        });
-    }
+    res.json({ message: "Compte supprimé avec succès" });
+  } catch (err) {
+    res.status(500).json({ message: "Erreur suppression compte", error: err.message });
+  }
 };

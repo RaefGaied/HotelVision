@@ -1,0 +1,209 @@
+hotel,nom,description,prix,actif,date_creation,date_update
+6956e0fd33e2abe4be8bd2ac,Transfert aéroport,Service premium: Transfert aéroport,71,True,2026-01-01 21:02:53.288,2026-01-01 21:02:53.288
+6956e0fd33e2abe4be8bd2ac,Service voiturier 24h,Service premium: Service voiturier 24h,228,True,2026-01-01 21:02:53.299,2026-01-01 21:02:53.299
+6956e0fd33e2abe4be8bd2ac,Massage relaxant 90min,Service premium: Massage relaxant 90min,61,True,2026-01-01 21:02:53.301,2026-01-01 21:02:53.301
+6956e0fd33e2abe4be8bd2ac,Location voiture,Service premium: Location voiture,159,True,2026-01-01 21:02:53.303,2026-01-01 21:02:53.303
+6956e0fd33e2abe4be8bd2ac,Massage relaxant 60min,Service premium: Massage relaxant 60min,82,True,2026-01-01 21:02:53.304,2026-01-01 21:02:53.304
+6956e0fd33e2abe4be8bd2ac,Séance fitness personnel,Service premium: Séance fitness personnel,225,True,2026-01-01 21:02:53.305,2026-01-01 21:02:53.305
+6956e0fd33e2abe4be8bd2ac,Excursion privée guidée,Service premium: Excursion privée guidée,132,True,2026-01-01 21:02:53.307,2026-01-01 21:02:53.307
+6956e0fd33e2abe4be8bd2ac,Séance fitness personnel,Service premium: Séance fitness personnel,167,True,2026-01-01 21:02:53.308,2026-01-01 21:02:53.308
+6956e0fd33e2abe4be8bd2ac,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,111,True,2026-01-01 21:02:53.310,2026-01-01 21:02:53.310
+6956e0fd33e2abe4be8bd2ac,Room service 24h,Service premium: Room service 24h,146,True,2026-01-01 21:02:53.311,2026-01-01 21:02:53.311
+6956e0fd33e2abe4be8bd2ac,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,171,True,2026-01-01 21:02:53.312,2026-01-01 21:02:53.312
+6956e0fd33e2abe4be8bd2ac,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,30,True,2026-01-01 21:02:53.313,2026-01-01 21:02:53.313
+6956e0fd33e2abe4be8bd2ae,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,158,True,2026-01-01 21:02:53.339,2026-01-01 21:02:53.339
+6956e0fd33e2abe4be8bd2ae,Transfert aéroport,Service premium: Transfert aéroport,243,True,2026-01-01 21:02:53.342,2026-01-01 21:02:53.342
+6956e0fd33e2abe4be8bd2ae,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,90,True,2026-01-01 21:02:53.343,2026-01-01 21:02:53.343
+6956e0fd33e2abe4be8bd2ae,Location voiture,Service premium: Location voiture,120,True,2026-01-01 21:02:53.345,2026-01-01 21:02:53.345
+6956e0fd33e2abe4be8bd2ae,Massage relaxant 90min,Service premium: Massage relaxant 90min,54,True,2026-01-01 21:02:53.346,2026-01-01 21:02:53.346
+6956e0fd33e2abe4be8bd2ae,Massage relaxant 90min,Service premium: Massage relaxant 90min,113,True,2026-01-01 21:02:53.347,2026-01-01 21:02:53.347
+6956e0fd33e2abe4be8bd2ae,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,203,True,2026-01-01 21:02:53.349,2026-01-01 21:02:53.349
+6956e0fd33e2abe4be8bd2ae,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,230,False,2026-01-01 21:02:53.350,2026-01-01 21:02:53.350
+6956e0fd33e2abe4be8bd2ae,Service voiturier 24h,Service premium: Service voiturier 24h,44,True,2026-01-01 21:02:53.351,2026-01-01 21:02:53.351
+6956e0fd33e2abe4be8bd2ae,Massage relaxant 60min,Service premium: Massage relaxant 60min,150,False,2026-01-01 21:02:53.352,2026-01-01 21:02:53.352
+6956e0fd33e2abe4be8bd2ae,Cours de yoga privé,Service premium: Cours de yoga privé,177,True,2026-01-01 21:02:53.352,2026-01-01 21:02:53.352
+6956e0fd33e2abe4be8bd2b0,Massage relaxant 90min,Service premium: Massage relaxant 90min,112,True,2026-01-01 21:02:53.355,2026-01-01 21:02:53.355
+6956e0fd33e2abe4be8bd2b0,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,150,False,2026-01-01 21:02:53.357,2026-01-01 21:02:53.357
+6956e0fd33e2abe4be8bd2b0,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,159,True,2026-01-01 21:02:53.358,2026-01-01 21:02:53.358
+6956e0fd33e2abe4be8bd2b0,Excursion privée guidée,Service premium: Excursion privée guidée,39,True,2026-01-01 21:02:53.359,2026-01-01 21:02:53.359
+6956e0fd33e2abe4be8bd2b0,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,51,True,2026-01-01 21:02:53.360,2026-01-01 21:02:53.360
+6956e0fd33e2abe4be8bd2b0,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,129,True,2026-01-01 21:02:53.361,2026-01-01 21:02:53.361
+6956e0fd33e2abe4be8bd2b0,Cours de yoga privé,Service premium: Cours de yoga privé,202,True,2026-01-01 21:02:53.361,2026-01-01 21:02:53.361
+6956e0fd33e2abe4be8bd2b0,Dîner gastronomique,Service premium: Dîner gastronomique,125,True,2026-01-01 21:02:53.362,2026-01-01 21:02:53.362
+6956e0fd33e2abe4be8bd2b0,Séance fitness personnel,Service premium: Séance fitness personnel,154,True,2026-01-01 21:02:53.363,2026-01-01 21:02:53.363
+6956e0fd33e2abe4be8bd2b0,Bouquet de fleurs,Service premium: Bouquet de fleurs,34,True,2026-01-01 21:02:53.365,2026-01-01 21:02:53.365
+6956e0fd33e2abe4be8bd2b2,Location voiture,Service premium: Location voiture,185,True,2026-01-01 21:02:53.367,2026-01-01 21:02:53.367
+6956e0fd33e2abe4be8bd2b2,Location vélo électrique,Service premium: Location vélo électrique,197,True,2026-01-01 21:02:53.368,2026-01-01 21:02:53.368
+6956e0fd33e2abe4be8bd2b2,Massage premium spécial,Service premium: Massage premium spécial,203,False,2026-01-01 21:02:53.369,2026-01-01 21:02:53.369
+6956e0fd33e2abe4be8bd2b2,Location voiture,Service premium: Location voiture,45,True,2026-01-01 21:02:53.370,2026-01-01 21:02:53.370
+6956e0fd33e2abe4be8bd2b2,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,168,True,2026-01-01 21:02:53.371,2026-01-01 21:02:53.371
+6956e0fd33e2abe4be8bd2b2,Location vélo électrique,Service premium: Location vélo électrique,163,True,2026-01-01 21:02:53.372,2026-01-01 21:02:53.372
+6956e0fd33e2abe4be8bd2b2,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,180,False,2026-01-01 21:02:53.374,2026-01-01 21:02:53.374
+6956e0fd33e2abe4be8bd2b2,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,228,True,2026-01-01 21:02:53.375,2026-01-01 21:02:53.375
+6956e0fd33e2abe4be8bd2b2,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,80,True,2026-01-01 21:02:53.377,2026-01-01 21:02:53.377
+6956e0fd33e2abe4be8bd2b2,Massage relaxant 60min,Service premium: Massage relaxant 60min,32,True,2026-01-01 21:02:53.379,2026-01-01 21:02:53.379
+6956e0fd33e2abe4be8bd2b2,Séance fitness personnel,Service premium: Séance fitness personnel,207,True,2026-01-01 21:02:53.380,2026-01-01 21:02:53.380
+6956e0fd33e2abe4be8bd2b4,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,234,True,2026-01-01 21:02:53.386,2026-01-01 21:02:53.386
+6956e0fd33e2abe4be8bd2b4,Excursion privée guidée,Service premium: Excursion privée guidée,188,True,2026-01-01 21:02:53.387,2026-01-01 21:02:53.387
+6956e0fd33e2abe4be8bd2b4,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,238,True,2026-01-01 21:02:53.390,2026-01-01 21:02:53.390
+6956e0fd33e2abe4be8bd2b4,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,204,True,2026-01-01 21:02:53.392,2026-01-01 21:02:53.392
+6956e0fd33e2abe4be8bd2b4,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,33,True,2026-01-01 21:02:53.393,2026-01-01 21:02:53.393
+6956e0fd33e2abe4be8bd2b4,Dîner gastronomique,Service premium: Dîner gastronomique,244,True,2026-01-01 21:02:53.395,2026-01-01 21:02:53.395
+6956e0fd33e2abe4be8bd2b4,Bouquet de fleurs,Service premium: Bouquet de fleurs,85,True,2026-01-01 21:02:53.396,2026-01-01 21:02:53.396
+6956e0fd33e2abe4be8bd2b4,Massage relaxant 60min,Service premium: Massage relaxant 60min,40,True,2026-01-01 21:02:53.398,2026-01-01 21:02:53.398
+6956e0fd33e2abe4be8bd2b4,Location vélo électrique,Service premium: Location vélo électrique,227,True,2026-01-01 21:02:53.399,2026-01-01 21:02:53.399
+6956e0fd33e2abe4be8bd2b4,Excursion privée guidée,Service premium: Excursion privée guidée,86,True,2026-01-01 21:02:53.400,2026-01-01 21:02:53.400
+6956e0fd33e2abe4be8bd2b4,Massage relaxant 60min,Service premium: Massage relaxant 60min,41,True,2026-01-01 21:02:53.401,2026-01-01 21:02:53.401
+6956e0fd33e2abe4be8bd2b4,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,44,True,2026-01-01 21:02:53.402,2026-01-01 21:02:53.402
+6956e0fd33e2abe4be8bd2b6,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,131,True,2026-01-01 21:02:53.405,2026-01-01 21:02:53.405
+6956e0fd33e2abe4be8bd2b6,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,41,True,2026-01-01 21:02:53.406,2026-01-01 21:02:53.406
+6956e0fd33e2abe4be8bd2b6,Massage premium spécial,Service premium: Massage premium spécial,242,False,2026-01-01 21:02:53.407,2026-01-01 21:02:53.407
+6956e0fd33e2abe4be8bd2b6,Séance fitness personnel,Service premium: Séance fitness personnel,174,False,2026-01-01 21:02:53.408,2026-01-01 21:02:53.408
+6956e0fd33e2abe4be8bd2b6,Cours de yoga privé,Service premium: Cours de yoga privé,83,True,2026-01-01 21:02:53.409,2026-01-01 21:02:53.409
+6956e0fd33e2abe4be8bd2b6,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,219,False,2026-01-01 21:02:53.410,2026-01-01 21:02:53.410
+6956e0fd33e2abe4be8bd2b6,Massage premium spécial,Service premium: Massage premium spécial,118,True,2026-01-01 21:02:53.411,2026-01-01 21:02:53.411
+6956e0fd33e2abe4be8bd2b6,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,174,True,2026-01-01 21:02:53.412,2026-01-01 21:02:53.412
+6956e0fd33e2abe4be8bd2b6,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,145,True,2026-01-01 21:02:53.412,2026-01-01 21:02:53.412
+6956e0fd33e2abe4be8bd2b6,Massage relaxant 90min,Service premium: Massage relaxant 90min,57,True,2026-01-01 21:02:53.413,2026-01-01 21:02:53.413
+6956e0fd33e2abe4be8bd2b8,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,156,True,2026-01-01 21:02:53.416,2026-01-01 21:02:53.416
+6956e0fd33e2abe4be8bd2b8,Location voiture,Service premium: Location voiture,110,True,2026-01-01 21:02:53.417,2026-01-01 21:02:53.417
+6956e0fd33e2abe4be8bd2b8,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,206,True,2026-01-01 21:02:53.418,2026-01-01 21:02:53.418
+6956e0fd33e2abe4be8bd2b8,Excursion privée guidée,Service premium: Excursion privée guidée,59,False,2026-01-01 21:02:53.419,2026-01-01 21:02:53.419
+6956e0fd33e2abe4be8bd2b8,Massage relaxant 90min,Service premium: Massage relaxant 90min,107,True,2026-01-01 21:02:53.419,2026-01-01 21:02:53.419
+6956e0fd33e2abe4be8bd2b8,Parking privé couvert,Service premium: Parking privé couvert,56,False,2026-01-01 21:02:53.420,2026-01-01 21:02:53.420
+6956e0fd33e2abe4be8bd2b8,Location voiture,Service premium: Location voiture,114,True,2026-01-01 21:02:53.421,2026-01-01 21:02:53.421
+6956e0fd33e2abe4be8bd2b8,Massage relaxant 90min,Service premium: Massage relaxant 90min,34,False,2026-01-01 21:02:53.422,2026-01-01 21:02:53.422
+6956e0fd33e2abe4be8bd2b8,Excursion privée guidée,Service premium: Excursion privée guidée,38,True,2026-01-01 21:02:53.423,2026-01-01 21:02:53.423
+6956e0fd33e2abe4be8bd2b8,Massage premium spécial,Service premium: Massage premium spécial,207,True,2026-01-01 21:02:53.424,2026-01-01 21:02:53.424
+6956e0fd33e2abe4be8bd2ba,Massage premium spécial,Service premium: Massage premium spécial,238,True,2026-01-01 21:02:53.429,2026-01-01 21:02:53.429
+6956e0fd33e2abe4be8bd2ba,Massage premium spécial,Service premium: Massage premium spécial,231,True,2026-01-01 21:02:53.430,2026-01-01 21:02:53.430
+6956e0fd33e2abe4be8bd2ba,Bouquet de fleurs,Service premium: Bouquet de fleurs,212,True,2026-01-01 21:02:53.431,2026-01-01 21:02:53.431
+6956e0fd33e2abe4be8bd2ba,Massage premium spécial,Service premium: Massage premium spécial,72,False,2026-01-01 21:02:53.432,2026-01-01 21:02:53.432
+6956e0fd33e2abe4be8bd2ba,Room service 24h,Service premium: Room service 24h,168,True,2026-01-01 21:02:53.433,2026-01-01 21:02:53.433
+6956e0fd33e2abe4be8bd2ba,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,189,True,2026-01-01 21:02:53.435,2026-01-01 21:02:53.435
+6956e0fd33e2abe4be8bd2ba,Cours de yoga privé,Service premium: Cours de yoga privé,152,True,2026-01-01 21:02:53.436,2026-01-01 21:02:53.436
+6956e0fd33e2abe4be8bd2ba,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,73,True,2026-01-01 21:02:53.437,2026-01-01 21:02:53.437
+6956e0fd33e2abe4be8bd2ba,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,25,True,2026-01-01 21:02:53.438,2026-01-01 21:02:53.438
+6956e0fd33e2abe4be8bd2ba,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,175,True,2026-01-01 21:02:53.439,2026-01-01 21:02:53.439
+6956e0fd33e2abe4be8bd2ba,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,164,True,2026-01-01 21:02:53.440,2026-01-01 21:02:53.440
+6956e0fd33e2abe4be8bd2ba,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,217,True,2026-01-01 21:02:53.442,2026-01-01 21:02:53.442
+6956e0fd33e2abe4be8bd2bc,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,94,True,2026-01-01 21:02:53.444,2026-01-01 21:02:53.444
+6956e0fd33e2abe4be8bd2bc,Massage relaxant 60min,Service premium: Massage relaxant 60min,110,True,2026-01-01 21:02:53.445,2026-01-01 21:02:53.445
+6956e0fd33e2abe4be8bd2bc,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,168,True,2026-01-01 21:02:53.446,2026-01-01 21:02:53.446
+6956e0fd33e2abe4be8bd2bc,Séance fitness personnel,Service premium: Séance fitness personnel,187,True,2026-01-01 21:02:53.446,2026-01-01 21:02:53.446
+6956e0fd33e2abe4be8bd2bc,Parking privé couvert,Service premium: Parking privé couvert,216,True,2026-01-01 21:02:53.447,2026-01-01 21:02:53.447
+6956e0fd33e2abe4be8bd2bc,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,82,True,2026-01-01 21:02:53.448,2026-01-01 21:02:53.448
+6956e0fd33e2abe4be8bd2bc,Location vélo électrique,Service premium: Location vélo électrique,78,True,2026-01-01 21:02:53.449,2026-01-01 21:02:53.449
+6956e0fd33e2abe4be8bd2bc,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,101,True,2026-01-01 21:02:53.450,2026-01-01 21:02:53.450
+6956e0fd33e2abe4be8bd2bc,Parking privé couvert,Service premium: Parking privé couvert,145,True,2026-01-01 21:02:53.451,2026-01-01 21:02:53.451
+6956e0fd33e2abe4be8bd2bc,Séance fitness personnel,Service premium: Séance fitness personnel,154,True,2026-01-01 21:02:53.452,2026-01-01 21:02:53.452
+6956e0fd33e2abe4be8bd2bc,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,206,True,2026-01-01 21:02:53.452,2026-01-01 21:02:53.452
+6956e0fd33e2abe4be8bd2be,Bouquet de fleurs,Service premium: Bouquet de fleurs,154,True,2026-01-01 21:02:53.455,2026-01-01 21:02:53.455
+6956e0fd33e2abe4be8bd2be,Dîner gastronomique,Service premium: Dîner gastronomique,126,True,2026-01-01 21:02:53.456,2026-01-01 21:02:53.456
+6956e0fd33e2abe4be8bd2be,Transfert aéroport,Service premium: Transfert aéroport,147,True,2026-01-01 21:02:53.457,2026-01-01 21:02:53.457
+6956e0fd33e2abe4be8bd2be,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,58,True,2026-01-01 21:02:53.458,2026-01-01 21:02:53.458
+6956e0fd33e2abe4be8bd2be,Séance fitness personnel,Service premium: Séance fitness personnel,215,True,2026-01-01 21:02:53.459,2026-01-01 21:02:53.459
+6956e0fd33e2abe4be8bd2be,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,177,True,2026-01-01 21:02:53.460,2026-01-01 21:02:53.460
+6956e0fd33e2abe4be8bd2be,Location vélo électrique,Service premium: Location vélo électrique,68,True,2026-01-01 21:02:53.461,2026-01-01 21:02:53.461
+6956e0fd33e2abe4be8bd2be,Massage relaxant 90min,Service premium: Massage relaxant 90min,92,True,2026-01-01 21:02:53.462,2026-01-01 21:02:53.462
+6956e0fd33e2abe4be8bd2be,Massage premium spécial,Service premium: Massage premium spécial,212,True,2026-01-01 21:02:53.463,2026-01-01 21:02:53.463
+6956e0fd33e2abe4be8bd2be,Location voiture,Service premium: Location voiture,36,True,2026-01-01 21:02:53.464,2026-01-01 21:02:53.464
+6956e0fd33e2abe4be8bd2c0,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,200,False,2026-01-01 21:02:53.466,2026-01-01 21:02:53.466
+6956e0fd33e2abe4be8bd2c0,Transfert aéroport,Service premium: Transfert aéroport,39,True,2026-01-01 21:02:53.467,2026-01-01 21:02:53.467
+6956e0fd33e2abe4be8bd2c0,Room service 24h,Service premium: Room service 24h,179,True,2026-01-01 21:02:53.468,2026-01-01 21:02:53.468
+6956e0fd33e2abe4be8bd2c0,Massage relaxant 60min,Service premium: Massage relaxant 60min,77,True,2026-01-01 21:02:53.469,2026-01-01 21:02:53.469
+6956e0fd33e2abe4be8bd2c0,Massage relaxant 60min,Service premium: Massage relaxant 60min,186,True,2026-01-01 21:02:53.469,2026-01-01 21:02:53.469
+6956e0fd33e2abe4be8bd2c0,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,174,True,2026-01-01 21:02:53.471,2026-01-01 21:02:53.471
+6956e0fd33e2abe4be8bd2c0,Dîner gastronomique,Service premium: Dîner gastronomique,49,True,2026-01-01 21:02:53.474,2026-01-01 21:02:53.474
+6956e0fd33e2abe4be8bd2c0,Massage premium spécial,Service premium: Massage premium spécial,119,True,2026-01-01 21:02:53.476,2026-01-01 21:02:53.476
+6956e0fd33e2abe4be8bd2c2,Transfert aéroport,Service premium: Transfert aéroport,81,True,2026-01-01 21:02:53.479,2026-01-01 21:02:53.479
+6956e0fd33e2abe4be8bd2c2,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,220,False,2026-01-01 21:02:53.481,2026-01-01 21:02:53.481
+6956e0fd33e2abe4be8bd2c2,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,84,True,2026-01-01 21:02:53.481,2026-01-01 21:02:53.481
+6956e0fd33e2abe4be8bd2c2,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,172,True,2026-01-01 21:02:53.482,2026-01-01 21:02:53.482
+6956e0fd33e2abe4be8bd2c2,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,28,True,2026-01-01 21:02:53.484,2026-01-01 21:02:53.484
+6956e0fd33e2abe4be8bd2c2,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,111,True,2026-01-01 21:02:53.485,2026-01-01 21:02:53.485
+6956e0fd33e2abe4be8bd2c2,Service voiturier 24h,Service premium: Service voiturier 24h,189,True,2026-01-01 21:02:53.485,2026-01-01 21:02:53.485
+6956e0fd33e2abe4be8bd2c2,Transfert aéroport,Service premium: Transfert aéroport,130,False,2026-01-01 21:02:53.486,2026-01-01 21:02:53.486
+6956e0fd33e2abe4be8bd2c2,Location voiture,Service premium: Location voiture,234,True,2026-01-01 21:02:53.487,2026-01-01 21:02:53.487
+6956e0fd33e2abe4be8bd2c2,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,244,True,2026-01-01 21:02:53.488,2026-01-01 21:02:53.488
+6956e0fd33e2abe4be8bd2c4,Service voiturier 24h,Service premium: Service voiturier 24h,190,True,2026-01-01 21:02:53.490,2026-01-01 21:02:53.490
+6956e0fd33e2abe4be8bd2c4,Dîner gastronomique,Service premium: Dîner gastronomique,207,True,2026-01-01 21:02:53.491,2026-01-01 21:02:53.491
+6956e0fd33e2abe4be8bd2c4,Massage relaxant 90min,Service premium: Massage relaxant 90min,200,True,2026-01-01 21:02:53.492,2026-01-01 21:02:53.492
+6956e0fd33e2abe4be8bd2c4,Location vélo électrique,Service premium: Location vélo électrique,20,True,2026-01-01 21:02:53.493,2026-01-01 21:02:53.493
+6956e0fd33e2abe4be8bd2c4,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,77,False,2026-01-01 21:02:53.494,2026-01-01 21:02:53.494
+6956e0fd33e2abe4be8bd2c4,Séance fitness personnel,Service premium: Séance fitness personnel,186,True,2026-01-01 21:02:53.494,2026-01-01 21:02:53.494
+6956e0fd33e2abe4be8bd2c4,Bouquet de fleurs,Service premium: Bouquet de fleurs,94,True,2026-01-01 21:02:53.495,2026-01-01 21:02:53.495
+6956e0fd33e2abe4be8bd2c4,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,172,True,2026-01-01 21:02:53.496,2026-01-01 21:02:53.496
+6956e0fd33e2abe4be8bd2c4,Parking privé couvert,Service premium: Parking privé couvert,52,True,2026-01-01 21:02:53.497,2026-01-01 21:02:53.497
+6956e0fd33e2abe4be8bd2c6,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,201,True,2026-01-01 21:02:53.500,2026-01-01 21:02:53.500
+6956e0fd33e2abe4be8bd2c6,Massage relaxant 60min,Service premium: Massage relaxant 60min,144,False,2026-01-01 21:02:53.501,2026-01-01 21:02:53.501
+6956e0fd33e2abe4be8bd2c6,Parking privé couvert,Service premium: Parking privé couvert,66,True,2026-01-01 21:02:53.501,2026-01-01 21:02:53.501
+6956e0fd33e2abe4be8bd2c6,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,111,True,2026-01-01 21:02:53.503,2026-01-01 21:02:53.503
+6956e0fd33e2abe4be8bd2c6,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,112,True,2026-01-01 21:02:53.504,2026-01-01 21:02:53.504
+6956e0fd33e2abe4be8bd2c6,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,184,True,2026-01-01 21:02:53.506,2026-01-01 21:02:53.506
+6956e0fd33e2abe4be8bd2c6,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,156,True,2026-01-01 21:02:53.507,2026-01-01 21:02:53.507
+6956e0fd33e2abe4be8bd2c6,Bouquet de fleurs,Service premium: Bouquet de fleurs,111,False,2026-01-01 21:02:53.508,2026-01-01 21:02:53.508
+6956e0fd33e2abe4be8bd2c6,Cours de yoga privé,Service premium: Cours de yoga privé,115,False,2026-01-01 21:02:53.509,2026-01-01 21:02:53.509
+6956e0fd33e2abe4be8bd2c8,Parking privé couvert,Service premium: Parking privé couvert,38,True,2026-01-01 21:02:53.511,2026-01-01 21:02:53.511
+6956e0fd33e2abe4be8bd2c8,Transfert aéroport,Service premium: Transfert aéroport,20,False,2026-01-01 21:02:53.512,2026-01-01 21:02:53.512
+6956e0fd33e2abe4be8bd2c8,Bouquet de fleurs,Service premium: Bouquet de fleurs,136,True,2026-01-01 21:02:53.513,2026-01-01 21:02:53.513
+6956e0fd33e2abe4be8bd2c8,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,62,True,2026-01-01 21:02:53.514,2026-01-01 21:02:53.514
+6956e0fd33e2abe4be8bd2c8,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,111,True,2026-01-01 21:02:53.515,2026-01-01 21:02:53.515
+6956e0fd33e2abe4be8bd2c8,Massage relaxant 60min,Service premium: Massage relaxant 60min,182,True,2026-01-01 21:02:53.516,2026-01-01 21:02:53.516
+6956e0fd33e2abe4be8bd2c8,Service voiturier 24h,Service premium: Service voiturier 24h,151,True,2026-01-01 21:02:53.517,2026-01-01 21:02:53.517
+6956e0fd33e2abe4be8bd2c8,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,21,True,2026-01-01 21:02:53.518,2026-01-01 21:02:53.518
+6956e0fd33e2abe4be8bd2c8,Bouquet de fleurs,Service premium: Bouquet de fleurs,140,True,2026-01-01 21:02:53.521,2026-01-01 21:02:53.521
+6956e0fd33e2abe4be8bd2c8,Location voiture,Service premium: Location voiture,85,True,2026-01-01 21:02:53.522,2026-01-01 21:02:53.522
+6956e0fd33e2abe4be8bd2c8,Massage relaxant 90min,Service premium: Massage relaxant 90min,188,True,2026-01-01 21:02:53.524,2026-01-01 21:02:53.524
+6956e0fd33e2abe4be8bd2c8,Room service 24h,Service premium: Room service 24h,105,True,2026-01-01 21:02:53.525,2026-01-01 21:02:53.525
+6956e0fd33e2abe4be8bd2ca,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,168,True,2026-01-01 21:02:53.527,2026-01-01 21:02:53.527
+6956e0fd33e2abe4be8bd2ca,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,77,True,2026-01-01 21:02:53.528,2026-01-01 21:02:53.528
+6956e0fd33e2abe4be8bd2ca,Transfert aéroport,Service premium: Transfert aéroport,101,True,2026-01-01 21:02:53.529,2026-01-01 21:02:53.529
+6956e0fd33e2abe4be8bd2ca,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,175,True,2026-01-01 21:02:53.530,2026-01-01 21:02:53.530
+6956e0fd33e2abe4be8bd2ca,Excursion privée guidée,Service premium: Excursion privée guidée,37,True,2026-01-01 21:02:53.530,2026-01-01 21:02:53.530
+6956e0fd33e2abe4be8bd2ca,Massage relaxant 60min,Service premium: Massage relaxant 60min,161,True,2026-01-01 21:02:53.531,2026-01-01 21:02:53.531
+6956e0fd33e2abe4be8bd2ca,Location voiture,Service premium: Location voiture,104,True,2026-01-01 21:02:53.532,2026-01-01 21:02:53.532
+6956e0fd33e2abe4be8bd2ca,Bouquet de fleurs,Service premium: Bouquet de fleurs,201,True,2026-01-01 21:02:53.534,2026-01-01 21:02:53.534
+6956e0fd33e2abe4be8bd2cc,Excursion privée guidée,Service premium: Excursion privée guidée,143,True,2026-01-01 21:02:53.537,2026-01-01 21:02:53.537
+6956e0fd33e2abe4be8bd2cc,Room service 24h,Service premium: Room service 24h,161,True,2026-01-01 21:02:53.538,2026-01-01 21:02:53.538
+6956e0fd33e2abe4be8bd2cc,Bouquet de fleurs,Service premium: Bouquet de fleurs,97,True,2026-01-01 21:02:53.539,2026-01-01 21:02:53.539
+6956e0fd33e2abe4be8bd2cc,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,126,True,2026-01-01 21:02:53.540,2026-01-01 21:02:53.540
+6956e0fd33e2abe4be8bd2cc,Room service 24h,Service premium: Room service 24h,61,True,2026-01-01 21:02:53.541,2026-01-01 21:02:53.541
+6956e0fd33e2abe4be8bd2cc,Accès Spa & Wellness,Service premium: Accès Spa & Wellness,134,True,2026-01-01 21:02:53.542,2026-01-01 21:02:53.542
+6956e0fd33e2abe4be8bd2cc,Parking privé couvert,Service premium: Parking privé couvert,221,True,2026-01-01 21:02:53.543,2026-01-01 21:02:53.543
+6956e0fd33e2abe4be8bd2cc,Location voiture,Service premium: Location voiture,115,True,2026-01-01 21:02:53.545,2026-01-01 21:02:53.545
+6956e0fd33e2abe4be8bd2cc,Transfert aéroport,Service premium: Transfert aéroport,249,True,2026-01-01 21:02:53.546,2026-01-01 21:02:53.546
+6956e0fd33e2abe4be8bd2cc,Excursion privée guidée,Service premium: Excursion privée guidée,43,True,2026-01-01 21:02:53.547,2026-01-01 21:02:53.547
+6956e0fd33e2abe4be8bd2cc,Location vélo électrique,Service premium: Location vélo électrique,89,True,2026-01-01 21:02:53.548,2026-01-01 21:02:53.548
+6956e0fd33e2abe4be8bd2cc,Dîner gastronomique,Service premium: Dîner gastronomique,134,True,2026-01-01 21:02:53.548,2026-01-01 21:02:53.548
+6956e0fd33e2abe4be8bd2ce,Bouquet de fleurs,Service premium: Bouquet de fleurs,180,True,2026-01-01 21:02:53.551,2026-01-01 21:02:53.551
+6956e0fd33e2abe4be8bd2ce,Massage premium spécial,Service premium: Massage premium spécial,184,True,2026-01-01 21:02:53.552,2026-01-01 21:02:53.552
+6956e0fd33e2abe4be8bd2ce,Excursion privée guidée,Service premium: Excursion privée guidée,231,True,2026-01-01 21:02:53.553,2026-01-01 21:02:53.553
+6956e0fd33e2abe4be8bd2ce,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,163,True,2026-01-01 21:02:53.554,2026-01-01 21:02:53.554
+6956e0fd33e2abe4be8bd2ce,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,47,True,2026-01-01 21:02:53.555,2026-01-01 21:02:53.555
+6956e0fd33e2abe4be8bd2ce,Massage premium spécial,Service premium: Massage premium spécial,94,True,2026-01-01 21:02:53.556,2026-01-01 21:02:53.556
+6956e0fd33e2abe4be8bd2ce,Location voiture,Service premium: Location voiture,97,True,2026-01-01 21:02:53.557,2026-01-01 21:02:53.557
+6956e0fd33e2abe4be8bd2ce,Dîner gastronomique,Service premium: Dîner gastronomique,245,True,2026-01-01 21:02:53.558,2026-01-01 21:02:53.558
+6956e0fd33e2abe4be8bd2ce,Massage relaxant 90min,Service premium: Massage relaxant 90min,168,True,2026-01-01 21:02:53.559,2026-01-01 21:02:53.559
+6956e0fd33e2abe4be8bd2ce,Location voiture,Service premium: Location voiture,57,True,2026-01-01 21:02:53.560,2026-01-01 21:02:53.560
+6956e0fd33e2abe4be8bd2ce,Cours de yoga privé,Service premium: Cours de yoga privé,31,True,2026-01-01 21:02:53.561,2026-01-01 21:02:53.561
+6956e0fd33e2abe4be8bd2d0,Séance fitness personnel,Service premium: Séance fitness personnel,199,False,2026-01-01 21:02:53.563,2026-01-01 21:02:53.563
+6956e0fd33e2abe4be8bd2d0,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,186,True,2026-01-01 21:02:53.563,2026-01-01 21:02:53.563
+6956e0fd33e2abe4be8bd2d0,Location voiture,Service premium: Location voiture,41,True,2026-01-01 21:02:53.564,2026-01-01 21:02:53.564
+6956e0fd33e2abe4be8bd2d0,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,87,True,2026-01-01 21:02:53.565,2026-01-01 21:02:53.565
+6956e0fd33e2abe4be8bd2d0,Excursion privée guidée,Service premium: Excursion privée guidée,233,True,2026-01-01 21:02:53.566,2026-01-01 21:02:53.566
+6956e0fd33e2abe4be8bd2d0,Massage relaxant 60min,Service premium: Massage relaxant 60min,146,True,2026-01-01 21:02:53.568,2026-01-01 21:02:53.568
+6956e0fd33e2abe4be8bd2d0,Champagne & amuse-bouches,Service premium: Champagne & amuse-bouches,85,True,2026-01-01 21:02:53.569,2026-01-01 21:02:53.569
+6956e0fd33e2abe4be8bd2d0,Excursion privée guidée,Service premium: Excursion privée guidée,123,True,2026-01-01 21:02:53.570,2026-01-01 21:02:53.570
+6956e0fd33e2abe4be8bd2d0,Bouquet de fleurs,Service premium: Bouquet de fleurs,159,False,2026-01-01 21:02:53.570,2026-01-01 21:02:53.570
+6956e0fd33e2abe4be8bd2d0,Baby-sitting professionnel,Service premium: Baby-sitting professionnel,50,True,2026-01-01 21:02:53.571,2026-01-01 21:02:53.571
+6956e0fd33e2abe4be8bd2d0,Location vélo électrique,Service premium: Location vélo électrique,40,True,2026-01-01 21:02:53.572,2026-01-01 21:02:53.572
+6956e0fd33e2abe4be8bd2d2,Bouquet de fleurs,Service premium: Bouquet de fleurs,146,True,2026-01-01 21:02:53.574,2026-01-01 21:02:53.574
+6956e0fd33e2abe4be8bd2d2,Transfert aéroport,Service premium: Transfert aéroport,171,True,2026-01-01 21:02:53.575,2026-01-01 21:02:53.575
+6956e0fd33e2abe4be8bd2d2,Petit-déjeuner continental,Service premium: Petit-déjeuner continental,185,False,2026-01-01 21:02:53.576,2026-01-01 21:02:53.576
+6956e0fd33e2abe4be8bd2d2,Location vélo électrique,Service premium: Location vélo électrique,31,True,2026-01-01 21:02:53.577,2026-01-01 21:02:53.577
+6956e0fd33e2abe4be8bd2d2,Massage premium spécial,Service premium: Massage premium spécial,162,True,2026-01-01 21:02:53.578,2026-01-01 21:02:53.578
+6956e0fd33e2abe4be8bd2d2,Séance fitness personnel,Service premium: Séance fitness personnel,37,True,2026-01-01 21:02:53.579,2026-01-01 21:02:53.579
+6956e0fd33e2abe4be8bd2d2,Préparation spéciale chambre,Service premium: Préparation spéciale chambre,35,True,2026-01-01 21:02:53.580,2026-01-01 21:02:53.580
+6956e0fd33e2abe4be8bd2d2,Petit-déjeuner en chambre,Service premium: Petit-déjeuner en chambre,125,True,2026-01-01 21:02:53.581,2026-01-01 21:02:53.581
+6956e0fd33e2abe4be8bd2d2,Bouquet de fleurs,Service premium: Bouquet de fleurs,109,True,2026-01-01 21:02:53.583,2026-01-01 21:02:53.583

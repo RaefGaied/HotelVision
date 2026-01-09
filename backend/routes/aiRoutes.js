@@ -1,13 +1,18 @@
-import express from "express";
-import { userAuth } from "../middleware/authMiddleware.js";
-import { getPostIdeas, analyzeSentiment, chatWithAI } from "../controllers/aiController.js";
-import { aiIdeaValidator, aiSentimentValidator, aiChatValidator } from "../validators/contentValidators.js";
-import { validate } from "../middleware/validationMiddleware.js";
-
+const express = require('express');
 const router = express.Router();
+const {
+    getRecommendations,
+    generateRoomDescription,
+    chatbotAssistance
+} = require('../controllers/aiController');
 
-router.post("/post-ideas", userAuth, aiIdeaValidator, validate, getPostIdeas);
-router.post("/sentiment", userAuth, aiSentimentValidator, validate, analyzeSentiment);
-router.post("/chat", userAuth, aiChatValidator, validate, chatWithAI);
+// Get personalized room recommendations
+router.post('/recommendations', getRecommendations);
 
-export default router;
+// Generate AI-powered room description
+router.get('/room-description/:roomId', generateRoomDescription);
+
+// Chatbot assistance
+router.post('/chatbot', chatbotAssistance);
+
+module.exports = router;
