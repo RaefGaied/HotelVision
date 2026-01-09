@@ -61,6 +61,30 @@ export const deleteHotel = createAsyncThunk(
   }
 );
 
+export const generateHotelDescription = createAsyncThunk(
+  'hotels/generateDescription',
+  async (hotelData, { rejectWithValue }) => {
+    try {
+      const response = await hotelService.generateDescription(hotelData);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Erreur lors de la génération de la description');
+    }
+  }
+);
+
+export const analyzeSentiment = createAsyncThunk(
+  'hotels/analyzeSentiment',
+  async (text, { rejectWithValue }) => {
+    try {
+      const response = await hotelService.analyzeSentiment(text);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Erreur lors de l\'analyse de sentiments');
+    }
+  }
+);
+
 const initialState = {
   hotels: [],
   currentHotel: null,
@@ -134,6 +158,36 @@ const hotelSlice = createSlice({
     builder
       .addCase(deleteHotel.fulfilled, (state, action) => {
         state.hotels = state.hotels.filter(h => h._id !== action.payload);
+      });
+
+    // Generate Description
+    builder
+      .addCase(generateHotelDescription.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(generateHotelDescription.fulfilled, (state, action) => {
+        state.loading = false;
+        // Ne pas modifier le store, juste retourner la description
+      })
+      .addCase(generateHotelDescription.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    // Analyze Sentiment
+    builder
+      .addCase(analyzeSentiment.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(analyzeSentiment.fulfilled, (state, action) => {
+        state.loading = false;
+        // Ne pas modifier le store, juste retourner l'analyse
+      })
+      .addCase(analyzeSentiment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

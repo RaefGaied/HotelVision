@@ -16,7 +16,7 @@ export const hotelService = {
     if (data instanceof FormData || data.image instanceof File) {
       // Use FormData for file upload
       const formData = new FormData();
-      
+
       // Add all fields
       Object.keys(data).forEach((key) => {
         if (key === 'image' && data[key] instanceof File) {
@@ -46,7 +46,7 @@ export const hotelService = {
     if (data instanceof FormData || (data.image && data.image instanceof File)) {
       // Use FormData for file upload
       const formData = new FormData();
-      
+
       // Add all fields
       Object.keys(data).forEach((key) => {
         if (key === 'image' && data[key] instanceof File) {
@@ -69,6 +69,16 @@ export const hotelService = {
 
   delete: async (id) => {
     const response = await apiClient.delete(`/hotels/${id}`);
+    return response.data;
+  },
+
+  generateDescription: async (hotelData) => {
+    const response = await apiClient.post('/hotels/generate-description', hotelData);
+    return response.data;
+  },
+
+  analyzeSentiment: async (text) => {
+    const response = await apiClient.post('/hotels/analyze-sentiment', { text });
     return response.data;
   },
 };

@@ -17,6 +17,11 @@ const ChambresPage = () => {
   const { chambres, loading } = useSelector((state) => state.chambres)
   const { services } = useSelector((state) => state.services)
   const { user } = useSelector((state) => state.auth)
+
+  // Debug pour vérifier l'utilisateur
+  console.log('User dans ChambresPage:', user)
+  console.log('User ID:', user?._id || user?.id || user?.email || 'guest')
+  console.log('Token:', localStorage.getItem('token'))
   const [filtered, setFiltered] = useState([])
   const [selectedServices, setSelectedServices] = useState([])
   const [showingServicesFor, setShowingServicesFor] = useState(null)
@@ -471,7 +476,7 @@ const ChambresPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* AI Recommendations */}
           <AIRecommendations
-            userId={user?._id || 'guest'}
+            userId={user?._id || user?.id || user?.email || 'guest'}
             onRoomSelect={(roomId) => {
               // Scroll to room and highlight it
               const roomElement = document.querySelector(`[data-room-id="${roomId}"]`)

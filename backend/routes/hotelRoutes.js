@@ -6,7 +6,8 @@ const {
   getHotelById,
   updateHotel,
   deleteHotel,
-  generateHotelDescription
+  generateHotelDescription,
+  analyzeSentiment
 } = require('../controllers/adminController');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
@@ -21,7 +22,9 @@ router.post('/', [auth, admin, upload.single('image')], createHotel);
 router.put('/:id', [auth, admin, upload.single('image')], updateHotel);
 router.delete('/:id', [auth, admin], deleteHotel);
 
-// AI route - generate description for existing hotel
+// AI routes - generate description and sentiment analysis
+router.post('/generate-description', [auth, admin], generateHotelDescription);
 router.post('/:id/generate-description', [auth, admin], generateHotelDescription);
+router.post('/analyze-sentiment', [auth, admin], analyzeSentiment);
 
 module.exports = router;

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { ArrowLeft, Plus, Trash2, Building2, Bed, Upload, X, Loader } from "lucide-react"
-import { createHotel, fetchHotelById, updateHotel } from "../store/hotelSlice"
+import { ArrowLeft, Plus, Trash2, Building2, Bed, Upload, X, Loader, Sparkles } from "lucide-react"
+import { createHotel, fetchHotelById, updateHotel, generateHotelDescription } from "../store/hotelSlice"
 import { fetchChambresByHotel, updateChambre, createChambreForHotel } from "../store/chambreSlice"
 import Loading from "../components/Loading"
+import { toast } from "react-toastify"
 
 const AddHotelPage = () => {
   const dispatch = useDispatch()
@@ -43,6 +44,7 @@ const AddHotelPage = () => {
   const [newChambres, setNewChambres] = useState([])
   const [loading, setLoading] = useState(isEditMode)
   const [errors, setErrors] = useState({})
+  const [isGeneratingDescription, setIsGeneratingDescription] = useState(false)
 
   // Load hotel data if in edit mode
   useEffect(() => {
@@ -125,7 +127,7 @@ const AddHotelPage = () => {
         setImagePreview(reader.result)
       }
       reader.readAsDataURL(file)
-      
+
       setErrors(prev => ({ ...prev, image: null }))
     }
   }
@@ -188,9 +190,39 @@ const AddHotelPage = () => {
     }
   }
 
+  const handleGenerateDescription = async () => {
+    // Vérifier que les champs requis sont remplis
+    if (!hotelData.nom.trim() || !hotelData.ville.trim() || !hotelData.etoiles) {
+      toast.error('Veuillez remplir le nom, la ville et le nombre d\'étoiles avant de générer la description')
+      return
+    }
+
+    setIsGeneratingDescription(true)
+    try {
+      // Utiliser les données du formulaire directement
+      const hotelDataForAI = {
+        nom: hotelData.nom,
+        ville: hotelData.ville,
+        etoiles: hotelData.etoiles
+      }
+
+      const result = await dispatch(generateHotelDescription(hotelDataForAI)).unwrap()
+      setHotelData(prev => ({
+        ...prev,
+        description: result.description
+      }))
+      toast.success('Description générée avec succès !')
+    } catch (error) {
+      toast.error('Erreur lors de la génération de la description')
+      console.error('Erreur IA:', error)
+    } finally {
+      setIsGeneratingDescription(false)
+    }
+  }
+
   const validateForm = () => {
     const newErrors = {}
-    
+
     // Validation hôtel
     if (!hotelData.nom.trim()) newErrors.nom = "Le nom est requis"
     if (!hotelData.adresse.trim()) newErrors.adresse = "L'adresse est requise"
@@ -215,7 +247,7 @@ const AddHotelPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     if (!validateForm()) {
       return
     }
@@ -245,9 +277,9 @@ const AddHotelPage = () => {
         // Update existing chambers
         for (const chambre of chambres) {
           if (chambre._id) {
-            await dispatch(updateChambre({ 
-              id: chambre._id, 
-              data: chambre 
+            await dispatch(updateChambre({
+              id: chambre._id,
+              data: chambre
             })).unwrap()
           }
         }
@@ -266,7 +298,7 @@ const AddHotelPage = () => {
           chambres: chambres
         })).unwrap()
       }
-      
+
       navigate('/hotels')
     } catch (error) {
       console.error('Erreur lors de l\'opération:', error)
@@ -296,7 +328,7 @@ const AddHotelPage = () => {
             {isEditMode ? "Modifier l'Hôtel" : "Ajouter un Hôtel"}
           </h1>
           <p className="text-gray-600 mt-2">
-            {isEditMode 
+            {isEditMode
               ? "Mettez à jour les informations de l'hôtel et ses chambres"
               : "Créez un nouvel hôtel avec ses chambres"}
           </p>
@@ -320,9 +352,8 @@ const AddHotelPage = () => {
                   name="nom"
                   value={hotelData.nom}
                   onChange={handleHotelChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.nom ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.nom ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Hôtel Le Prestige"
                 />
                 {errors.nom && <p className="text-red-500 text-sm mt-1">{errors.nom}</p>}
@@ -337,9 +368,8 @@ const AddHotelPage = () => {
                   name="ville"
                   value={hotelData.ville}
                   onChange={handleHotelChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.ville ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.ville ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Paris"
                 />
                 {errors.ville && <p className="text-red-500 text-sm mt-1">{errors.ville}</p>}
@@ -354,9 +384,8 @@ const AddHotelPage = () => {
                   name="adresse"
                   value={hotelData.adresse}
                   onChange={handleHotelChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.adresse ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.adresse ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="123 Avenue des Champs-Élysées"
                 />
                 {errors.adresse && <p className="text-red-500 text-sm mt-1">{errors.adresse}</p>}
@@ -371,9 +400,8 @@ const AddHotelPage = () => {
                   name="telephone"
                   value={hotelData.telephone}
                   onChange={handleHotelChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.telephone ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.telephone ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="+33 1 23 45 67 89"
                 />
                 {errors.telephone && <p className="text-red-500 text-sm mt-1">{errors.telephone}</p>}
@@ -388,9 +416,8 @@ const AddHotelPage = () => {
                   name="email"
                   value={hotelData.email}
                   onChange={handleHotelChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="contact@hotel.com"
                 />
                 {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
@@ -416,7 +443,7 @@ const AddHotelPage = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Image de l'hôtel
                 </label>
-                
+
                 {!imagePreview && !currentImageUrl ? (
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 transition">
                     <input
@@ -434,9 +461,9 @@ const AddHotelPage = () => {
                   </div>
                 ) : (
                   <div className="relative inline-block w-full">
-                    <img 
-                      src={imagePreview || `http://localhost:5000${currentImageUrl}`} 
-                      alt="Preview" 
+                    <img
+                      src={imagePreview || `http://localhost:5000${currentImageUrl}`}
+                      alt="Preview"
                       className="w-full h-64 object-cover rounded-lg"
                     />
                     <button
@@ -455,14 +482,37 @@ const AddHotelPage = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Description
                 </label>
-                <textarea
-                  name="description"
-                  value={hotelData.description}
-                  onChange={handleHotelChange}
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Description de l'hôtel, services disponibles, etc."
-                />
+                <div className="flex gap-2 mb-2">
+                  <textarea
+                    name="description"
+                    value={hotelData.description}
+                    onChange={handleHotelChange}
+                    rows={4}
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Description de l'hôtel, services disponibles, etc."
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={handleGenerateDescription}
+                  disabled={isGeneratingDescription || !hotelData.nom.trim() || !hotelData.ville.trim()}
+                  className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                >
+                  {isGeneratingDescription ? (
+                    <>
+                      <Loader size={18} className="animate-spin" />
+                      Génération en cours...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles size={18} />
+                      Générer avec l'IA
+                    </>
+                  )}
+                </button>
+                <p className="text-xs text-gray-500 mt-1">
+                  Remplissez le nom, la ville et les étoiles, puis cliquez pour générer une description automatique
+                </p>
               </div>
             </div>
           </div>
@@ -511,9 +561,8 @@ const AddHotelPage = () => {
                         type="text"
                         value={chambre.numero}
                         onChange={(e) => handleChambreChange(index, 'numero', e.target.value)}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors[`chambre_${index}_numero`] ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[`chambre_${index}_numero`] ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="101"
                       />
                       {errors[`chambre_${index}_numero`] && (
@@ -560,9 +609,8 @@ const AddHotelPage = () => {
                         step="0.01"
                         value={chambre.prix}
                         onChange={(e) => handleChambreChange(index, 'prix', e.target.value)}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors[`chambre_${index}_prix`] ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[`chambre_${index}_prix`] ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="50.00"
                       />
                       {errors[`chambre_${index}_prix`] && (
@@ -634,9 +682,8 @@ const AddHotelPage = () => {
                           type="text"
                           value={chambre.numero}
                           onChange={(e) => handleChambreChange(index, 'numero', e.target.value, true)}
-                          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                            errors[`new_chambre_${index}_numero`] ? 'border-red-500' : 'border-gray-300'
-                          }`}
+                          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[`new_chambre_${index}_numero`] ? 'border-red-500' : 'border-gray-300'
+                            }`}
                           placeholder="101"
                         />
                         {errors[`new_chambre_${index}_numero`] && (
@@ -684,9 +731,8 @@ const AddHotelPage = () => {
                           step="0.01"
                           value={chambre.prix}
                           onChange={(e) => handleChambreChange(index, 'prix', e.target.value, true)}
-                          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                            errors[`new_chambre_${index}_prix`] ? 'border-red-500' : 'border-gray-300'
-                          }`}
+                          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[`new_chambre_${index}_prix`] ? 'border-red-500' : 'border-gray-300'
+                            }`}
                           placeholder="100"
                         />
                         {errors[`new_chambre_${index}_prix`] && (
@@ -750,7 +796,7 @@ const AddHotelPage = () => {
               className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               {loading && <Loader size={18} className="animate-spin" />}
-              {loading 
+              {loading
                 ? (isEditMode ? 'Modification...' : 'Création...')
                 : (isEditMode ? 'Mettre à jour l\'hôtel' : 'Créer l\'hôtel')}
             </button>
